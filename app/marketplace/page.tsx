@@ -14,6 +14,18 @@ type Medidas = {
 export default function MarketplacePage() {
   const [autorizado, setAutorizado] = useState(false);
   const [avatarFit, setAvatarFit] = useState<Medidas | null>(null);
+  function gerarAvatarFit() {
+  const medidas: Medidas = {
+    busto: 96,
+    cintura: 82,
+    quadril: 102,
+    coxa: 58,
+    perna: 104,
+    tamanho: "M"
+  };
+
+  setAvatarFit(medidas);
+}
 
   const [frente, setFrente] = useState<string | null>(null);
   const [costas, setCostas] = useState<string | null>(null);

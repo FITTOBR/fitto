@@ -54,5 +54,54 @@ export default function MarketplacePage() {
       >
         Gerar Avatar FIT
       </button>
+      
+{avatarFit && (
+  <div style={{ marginTop: 30 }}>
+    <h3>Medidas detectadas</h3>
 
+    <p>Busto: {avatarFit.busto} cm</p>
+    <p>Cintura: {avatarFit.cintura} cm</p>
+    <p>Quadril: {avatarFit.quadril} cm</p>
+    <p>Coxa: {avatarFit.coxa} cm</p>
+    <p>Comprimento da perna: {avatarFit.perna} cm</p>
+
+    <strong>
+      Tamanho recomendado: {avatarFit.tamanho}
+    </strong>
+
+    <div style={{
+      marginTop: 20,
+      padding: 20,
+      borderRadius: 12,
+      background: "#f3f4f6"
+    }}>
+      <p>Simulação da peça no corpo</p>
+
+      <div style={{
+        height: 220,
+        borderRadius: 10,
+        background: "#e5e7eb",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        Roupa ajustada ao corpo tamanho {avatarFit.tamanho}
+      </div>
+    </div>
+
+    <button
+      style={{
+        marginTop: 20,
+        padding: "10px 20px",
+        borderRadius: 8,
+        border: "none",
+        background: "#22c55e",
+        color: "#fff",
+        cursor: "pointer"
+      }}
+    >
+      Comprar com tamanho {avatarFit.tamanho}
+    </button>
+  </div>
+)}
   

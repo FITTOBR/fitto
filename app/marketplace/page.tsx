@@ -30,6 +30,7 @@ export default function MarketplacePage() {
     <main style={{ padding: 40 }}>
       <h1 style={{ marginBottom: 10 }}>Marketplace Fitto</h1>
       <p>Teste virtual + compra direta</p>
+      <p>Provador inteligente Fitto ativo</p>
 
       <h2>1️⃣ Captura corporal</h2>
       <p>Envie fotos frente, costas e laterais</p>

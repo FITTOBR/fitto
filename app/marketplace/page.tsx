@@ -44,15 +44,17 @@ export default function MarketplacePage() {
   }
 
   // Simulação do motor de medidas (MVP demonstrável)
-  function gerarAvatarFit() {
-    const medidas: Medidas = {
-      busto: 96,
-      cintura: 82,
-      quadril: 102,
-      tamanho: "M"
-    };
-    setAvatarFit(medidas);
-  }
+ function gerarAvatarFit() {
+  const medidas: Medidas = {
+    busto: 96,
+    cintura: 82,
+    quadril: 102,
+    coxa: 58,
+    perna: 104,
+    tamanho: "M"
+  };
+  setAvatarFit(medidas);
+}
 
   if (!autorizado) return null;
 

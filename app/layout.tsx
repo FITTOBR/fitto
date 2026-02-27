@@ -31,10 +31,11 @@ export default function RootLayout({
             gap: 20,
             alignItems: "center"
           }}>
-            <strong>Fitto</strong>
+          <strong>Fitto</strong>
 
-            <Link href="/provador">Provador</Link>
-            <Link href="/marketplace">Marketplace</Link>
+<Link href="/provador">Provador</Link>
+<Link href="/marketplace">Marketplace</Link>
+<Link href="/lojista">Painel do Lojista</Link>
 
             <button
               onClick={handleLogout}

@@ -104,4 +104,7 @@ export default function MarketplacePage() {
     </button>
   </div>
 )}
+          </main>
+  );
+}
   

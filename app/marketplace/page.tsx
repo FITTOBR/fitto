@@ -55,10 +55,4 @@ export default function MarketplacePage() {
         Gerar Avatar FIT
       </button>
 
-    <button onClick={gerarAvatarFit}>
-  Gerar Avatar FIT
-</button>
-
-    </main>
-  );
-}
+  

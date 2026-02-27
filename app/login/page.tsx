@@ -1,20 +1,31 @@
-import Link from "next/link"
+"use client";
 
-export default function Home() {
+export default function LoginPage() {
+
+  function handleLogin() {
+    localStorage.setItem("fitto_user", "logado");
+    window.location.href = "/provador";
+  }
+
   return (
     <div style={{ padding: 40 }}>
-      <h1>Fitto 🚀</h1>
-      <p>Ambiente de testes para lojistas</p>
+      <h1>Fitto</h1>
+      <p>Ambiente de acesso ao sistema</p>
 
-      <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
-        <Link href="/login">
-          <button>Entrar no sistema</button>
-        </Link>
-
-        <Link href="/provador">
-          <button>Provador Virtual</button>
-        </Link>
-      </div>
+      <button
+        onClick={handleLogin}
+        style={{
+          marginTop: 20,
+          padding: "12px 20px",
+          background: "black",
+          color: "white",
+          borderRadius: 8,
+          border: "none",
+          cursor: "pointer"
+        }}
+      >
+        Entrar no sistema
+      </button>
     </div>
-  )
+  );
 }

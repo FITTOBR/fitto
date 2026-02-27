@@ -6,6 +6,8 @@ type Medidas = {
   busto: number;
   cintura: number;
   quadril: number;
+  coxa: number;
+  perna: number;
   tamanho: string;
 };
 

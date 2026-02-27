@@ -2,62 +2,126 @@
 
 import { useEffect, useState } from "react";
 
+type Medidas = {
+  busto: number;
+  cintura: number;
+  quadril: number;
+  tamanho: string;
+};
+
 export default function MarketplacePage() {
   const [autorizado, setAutorizado] = useState(false);
-  const [foto, setFoto] = useState<string | null>(null);
+
+  const [frente, setFrente] = useState<string | null>(null);
+  const [costas, setCostas] = useState<string | null>(null);
+  const [ladoE, setLadoE] = useState<string | null>(null);
+  const [ladoD, setLadoD] = useState<string | null>(null);
+
+  const [avatarFit, setAvatarFit] = useState<Medidas | null>(null);
   const [roupa, setRoupa] = useState<string | null>(null);
 
   useEffect(() => {
     const user = localStorage.getItem("fitto_user");
-    if (!user) {
-      window.location.href = "/login";
-    } else {
-      setAutorizado(true);
-    }
+    if (!user) window.location.href = "/login";
+    else setAutorizado(true);
   }, []);
 
-  function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  function upload(e: React.ChangeEvent<HTMLInputElement>, tipo: string) {
     const file = e.target.files?.[0];
     if (!file) return;
-    setFoto(URL.createObjectURL(file));
+    const url = URL.createObjectURL(file);
+
+    if (tipo === "frente") setFrente(url);
+    if (tipo === "costas") setCostas(url);
+    if (tipo === "ladoE") setLadoE(url);
+    if (tipo === "ladoD") setLadoD(url);
   }
 
-  function testarRoupa(img: string) {
-    setRoupa(img);
+  // Simulação do motor de medidas (MVP demonstrável)
+  function gerarAvatarFit() {
+    const medidas: Medidas = {
+      busto: 96,
+      cintura: 82,
+      quadril: 102,
+      tamanho: "M"
+    };
+    setAvatarFit(medidas);
   }
 
   if (!autorizado) return null;
 
   return (
     <main style={{ padding: 40 }}>
-      <h1 style={{ color: "#333" }}>Marketplace Fitto</h1>
+      <h1 style={{ marginBottom: 10 }}>Marketplace Fitto</h1>
+      <p>Teste virtual + compra direta</p>
 
-      <h2>1️⃣ Envie sua foto</h2>
-      <input type="file" accept="image/*" onChange={handleUpload} />
+      <hr style={{ margin: "20px 0" }} />
 
-      <h2 style={{ marginTop: 30 }}>2️⃣ Escolha uma peça</h2>
+      <h2>1️⃣ Captura corporal</h2>
+
+      <p>Frente</p>
+      <input type="file" accept="image/*" onChange={(e) => upload(e, "frente")} />
+
+      <p>Costas</p>
+      <input type="file" accept="image/*" onChange={(e) => upload(e, "costas")} />
+
+      <p>Lado esquerdo</p>
+      <input type="file" accept="image/*" onChange={(e) => upload(e, "ladoE")} />
+
+      <p>Lado direito</p>
+      <input type="file" accept="image/*" onChange={(e) => upload(e, "ladoD")} />
+
+      {frente && costas && ladoE && ladoD && (
+        <button
+          onClick={gerarAvatarFit}
+          style={{ marginTop: 20, padding: 12, borderRadius: 8 }}
+        >
+          Criar Avatar FIT
+        </button>
+      )}
+
+      {avatarFit && (
+        <div style={{
+          marginTop: 20,
+          padding: 20,
+          background: "white",
+          borderRadius: 10,
+          border: "1px solid #ddd"
+        }}>
+          <h3>Avatar FIT criado</h3>
+          <p>Busto: {avatarFit.busto} cm</p>
+          <p>Cintura: {avatarFit.cintura} cm</p>
+          <p>Quadril: {avatarFit.quadril} cm</p>
+          <strong>Tamanho recomendado: {avatarFit.tamanho}</strong>
+        </div>
+      )}
+
+      <hr style={{ margin: "30px 0" }} />
+
+      <h2>2️⃣ Escolha uma peça</h2>
 
       <div style={{ display: "flex", gap: 20 }}>
         <img
           src="/roupa1.png"
           width={120}
           style={{ cursor: "pointer" }}
-          onClick={() => testarRoupa("/roupa1.png")}
+          onClick={() => setRoupa("/roupa1.png")}
         />
-
         <img
           src="/roupa2.png"
           width={120}
           style={{ cursor: "pointer" }}
-          onClick={() => testarRoupa("/roupa2.png")}
+          onClick={() => setRoupa("/roupa2.png")}
         />
       </div>
 
-      <h2 style={{ marginTop: 30 }}>3️⃣ Resultado no seu corpo</h2>
+      <hr style={{ margin: "30px 0" }} />
 
-      {foto && (
+      <h2>3️⃣ Visualização no corpo</h2>
+
+      {frente && (
         <div style={{ position: "relative", width: 300 }}>
-          <img src={foto} width={300} />
+          <img src={frente} width={300} />
           {roupa && (
             <img
               src={roupa}
@@ -68,9 +132,14 @@ export default function MarketplacePage() {
         </div>
       )}
 
-      {roupa && (
-        <button style={{ marginTop: 20, padding: 12 }}>
-          Comprar esta peça
+      {avatarFit && roupa && (
+        <button style={{
+          marginTop: 20,
+          padding: "14px 24px",
+          borderRadius: 10,
+          background: "#00a650"
+        }}>
+          Comprar com tamanho {avatarFit.tamanho}
         </button>
       )}
     </main>

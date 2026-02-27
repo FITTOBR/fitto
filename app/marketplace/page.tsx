@@ -198,6 +198,9 @@ export default function MarketplacePage() {
     <strong>Tamanho recomendado: {avatarFit.tamanho}</strong>
   </div>
 )}
+      <div style={{ background: "red", color: "white", padding: 10 }}>
+  TESTE FITTO VISÍVEL
+</div>
       <p>Frente</p>
       <input type="file" accept="image/*" onChange={(e) => upload(e, "frente")} />
 

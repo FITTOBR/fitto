@@ -13,6 +13,7 @@ type Medidas = {
 
 export default function MarketplacePage() {
   const [autorizado, setAutorizado] = useState(false);
+  const [avatarFit, setAvatarFit] = useState<Medidas | null>(null);
 
   const [frente, setFrente] = useState<string | null>(null);
   const [costas, setCostas] = useState<string | null>(null);

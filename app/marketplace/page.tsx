@@ -75,6 +75,33 @@ export default function MarketplacePage() {
     <main style={{ padding: 40 }}>
       <h1 style={{ marginBottom: 10 }}>Marketplace Fitto</h1>
       <p>Teste virtual + compra direta</p>
+      <div style={{ marginTop: 30 }}>
+  <button
+    onClick={gerarAvatarFit}
+    style={{
+      padding: "10px 20px",
+      borderRadius: 8,
+      border: "none",
+      background: "#000",
+      color: "#fff",
+      cursor: "pointer"
+    }}
+  >
+    Gerar Avatar FIT
+  </button>
+
+  {avatarFit && (
+    <div style={{ marginTop: 20, padding: 15, border: "1px solid #ddd", borderRadius: 10 }}>
+      <h3>Avatar FIT criado</h3>
+      <p>Busto: {avatarFit.busto} cm</p>
+      <p>Cintura: {avatarFit.cintura} cm</p>
+      <p>Quadril: {avatarFit.quadril} cm</p>
+      <p>Coxa: {avatarFit.coxa} cm</p>
+      <p>Comprimento da perna: {avatarFit.perna} cm</p>
+      <strong>Tamanho recomendado: {avatarFit.tamanho}</strong>
+    </div>
+  )}
+</div>
 
       <hr style={{ margin: "20px 0" }} />
 

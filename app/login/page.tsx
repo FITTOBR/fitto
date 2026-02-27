@@ -1,14 +1,20 @@
-export default function LoginPage() {
+import Link from "next/link"
+
+export default function Home() {
   return (
     <div style={{ padding: 40 }}>
-      <h1>Login do Fitto</h1>
+      <h1>Fitto 🚀</h1>
       <p>Ambiente de testes para lojistas</p>
 
-      <form style={{ display: "flex", flexDirection: "column", gap: 10, maxWidth: 300 }}>
-        <input placeholder="Email" />
-        <input type="password" placeholder="Senha" />
-        <button>Entrar</button>
-      </form>
+      <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+        <Link href="/login">
+          <button>Entrar no sistema</button>
+        </Link>
+
+        <Link href="/provador">
+          <button>Provador Virtual</button>
+        </Link>
+      </div>
     </div>
   )
 }

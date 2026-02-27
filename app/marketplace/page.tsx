@@ -23,8 +23,12 @@ export default function MarketplacePage() {
   useEffect(() => {
     const user = localStorage.getItem("fitto_user");
     if (!user) window.location.href = "/login";
-    else setAutorizado(true);
-  }, []);
+   else {
+  setAutorizado(true);
+
+  const salvos = localStorage.getItem("fitto_produtos");
+  if (salvos) setProdutos(JSON.parse(salvos));
+}
 
   function upload(e: React.ChangeEvent<HTMLInputElement>, tipo: string) {
     const file = e.target.files?.[0];

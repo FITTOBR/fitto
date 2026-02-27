@@ -23,6 +23,17 @@ export default function MarketplacePage() {
     perna: 104,
     tamanho: "M"
   };
+  setAvatarFit(medidas);
+}
+  function gerarAvatarFit() {
+  const medidas: Medidas = {
+    busto: 96,
+    cintura: 82,
+    quadril: 102,
+    coxa: 58,
+    perna: 104,
+    tamanho: "M"
+  };
 
   setAvatarFit(medidas);
 }

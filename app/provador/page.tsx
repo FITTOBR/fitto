@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ProvadorPage() {
   const [foto, setFoto] = useState<string | null>(null);

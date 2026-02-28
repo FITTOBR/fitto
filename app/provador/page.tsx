@@ -37,6 +37,14 @@ const [liberado, setLiberado] = useState(false);
       }}
     >
       <h1 style={{ fontSize: 32 }}>Provador Virtual Fitto</h1>
+      <img
+  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+  style={{
+    width: 180,
+    borderRadius: 12,
+    marginBottom: 10
+  }}
+/>
 
     {produtoSelecionado && (
   <div style={{

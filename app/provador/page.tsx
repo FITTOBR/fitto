@@ -38,15 +38,49 @@ const [liberado, setLiberado] = useState(false);
     >
       <h1 style={{ fontSize: 32 }}>Provador Virtual Fitto</h1>
 
-      {produtoSelecionado && (
-        <div
-          style={{
-            marginBottom: 15,
-            padding: 10,
-            borderRadius: 8,
-            background: "#ecfeff",
-            border: "1px solid #67e8f9"
-          }}
+    {produtoSelecionado && (
+  <div style={{
+    display: "flex",
+    gap: 20,
+    padding: 20,
+    borderRadius: 12,
+    border: "1px solid #e5e7eb",
+    background: "#fff"
+  }}>
+    <img
+      src="/produto-exemplo.png"
+      style={{
+        width: 120,
+        height: 120,
+        objectFit: "cover",
+        borderRadius: 10
+      }}
+    />
+
+    <div>
+      <h3 style={{ margin: 0 }}>
+        {produtoSelecionado === "camiseta-fitto-dry"
+          ? "Camiseta Fitto Dry"
+          : "Produto Fitto"}
+      </h3>
+
+      <p style={{ color: "#64748b", marginTop: 5 }}>
+        Ajuste inteligente ao corpo
+      </p>
+
+      <div style={{
+        marginTop: 10,
+        padding: "6px 12px",
+        borderRadius: 8,
+        background: "#ecfeff",
+        border: "1px solid #67e8f9",
+        fontSize: 14
+      }}>
+        Tamanho recomendado será exibido após análise
+      </div>
+    </div>
+  </div>
+)}
         >
           Produto selecionado: {produtoSelecionado}
         </div>

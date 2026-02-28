@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function ProvadorPage() {
+  const searchParams = useSearchParams();
+const produtoSelecionado = searchParams.get("produto");
   const [foto, setFoto] = useState<string | null>(null);
 
   function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {

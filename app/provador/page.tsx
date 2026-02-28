@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 
 function ConteudoProvador() {
   const [imagem, setImagem] = useState<string | null>(null);
+  const [estado, setEstado] = useState("");
+const [cidade, setCidade] = useState("");
+const [liberado, setLiberado] = useState(false);
   const searchParams = useSearchParams();
   const produtoSelecionado = searchParams.get("produto");
 

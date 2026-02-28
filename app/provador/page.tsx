@@ -46,15 +46,31 @@ const [liberado, setLiberado] = useState(false);
   }}
 />
 
-    {produtoSelecionado && (
+   {produtoSelecionado && (
   <div style={{
-    display: "flex",
-    gap: 20,
-    padding: 20,
+    marginBottom: 15,
+    padding: 15,
     borderRadius: 12,
-    border: "1px solid #e5e7eb",
-    background: "#fff"
+    background: "#ecfeff",
+    border: "1px solid #67e8f9",
+    textAlign: "center"
   }}>
+    <p style={{ marginBottom: 10, fontWeight: "bold" }}>
+      Produto selecionado:
+    </p>
+
+    <p style={{ marginBottom: 10 }}>
+      {produtoSelecionado}
+    </p>
+
+    <img
+      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+      alt="Produto"
+      width={220}
+      style={{ borderRadius: 10 }}
+    />
+  </div>
+)}
     <img
       https://images.unsplash.com/photo-1521572163474-6864f9cf17ab
       style={{

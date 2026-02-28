@@ -35,17 +35,7 @@ const produtoSelecionado = searchParams.get("produto");
     background: "#ecfeff",
     border: "1px solid #67e8f9"
   }}>
-    Produto selecionado: {produtoSelecionado}
-  </div>
-)}
-      {produtoSelecionado && (
-  <div style={{
-    marginBottom: 15,
-    padding: 10,
-    borderRadius: 8,
-    background: "#ecfeff",
-    border: "1px solid #67e8f9"
-  }}>
+   
     Produto selecionado: {produtoSelecionado}
   </div>
 )}

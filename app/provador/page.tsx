@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function Provador() {
+function ConteudoProvador() {
   const [imagem, setImagem] = useState<string | null>(null);
-
-  // LÊ O PRODUTO DA URL
   const searchParams = useSearchParams();
   const produtoSelecionado = searchParams.get("produto");
 
@@ -68,13 +66,17 @@ export default function Provador() {
         <img
           src={imagem}
           alt="Preview"
-          style={{
-            width: 250,
-            borderRadius: 12,
-            marginTop: 10
-          }}
+          style={{ width: 250, borderRadius: 12 }}
         />
       )}
     </main>
+  );
+}
+
+export default function Provador() {
+  return (
+    <Suspense fallback={<div>Carregando provador...</div>}>
+      <ConteudoProvador />
+    </Suspense>
   );
 }

@@ -2,111 +2,51 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/supabase";
 
 export default function ProvadorPage() {
   const searchParams = useSearchParams();
-  const produtoSelecionado = searchParams.get("produto");
+  const productId = searchParams.get("produto");
 
-  const [imagemUsuario, setImagemUsuario] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(null);
 
-  function handleUpload(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  async function handleUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files || event.target.files.length === 0) return;
 
-    const imageUrl = URL.createObjectURL(file);
-    setImagemUsuario(imageUrl);
+    const file = event.target.files[0];
+
+    const fileName = `${Date.now()}-${file.name}`;
+
+    const { data, error } = await supabase.storage
+      .from("fotos")
+      .upload(fileName, file);
+
+    if (error) {
+      alert("Erro ao enviar imagem");
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("fotos")
+      .getPublicUrl(fileName);
+
+    setImage(urlData.publicUrl);
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#f8fafc"
-      }}
-    >
-      <div
-        style={{
-          width: 420,
-          padding: 30,
-          borderRadius: 16,
-          background: "white",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-          textAlign: "center"
-        }}
-      >
-        <h1 style={{ fontSize: 26, marginBottom: 20 }}>
-          Provador Virtual Fitto
-        </h1>
+    <div style={{ padding: 20 }}>
+      <h1>Provador Virtual</h1>
 
-        {produtoSelecionado && (
-          <div
-            style={{
-              marginBottom: 20,
-              padding: 15,
-              borderRadius: 12,
-              background: "#ecfeff",
-              border: "1px solid #67e8f9"
-            }}
-          >
-            <p style={{ fontWeight: "bold", marginBottom: 10 }}>
-              Produto selecionado
-            </p>
+      {productId && <p>Produto selecionado: {productId}</p>}
 
-            <p style={{ marginBottom: 15 }}>
-              {produtoSelecionado}
-            </p>
+      <input type="file" accept="image/*" onChange={handleUpload} />
 
-            <img
-              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
-              alt="Produto"
-              width={220}
-              style={{ borderRadius: 10 }}
-            />
-          </div>
-        )}
-
-        {!imagemUsuario && (
-          <label
-            style={{
-              display: "inline-block",
-              padding: "12px 20px",
-              background: "black",
-              color: "white",
-              borderRadius: 10,
-              cursor: "pointer"
-            }}
-          >
-            Enviar Foto
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleUpload}
-              hidden
-            />
-          </label>
-        )}
-
-        {imagemUsuario && (
-          <div style={{ marginTop: 20 }}>
-            <p style={{ marginBottom: 10 }}>Sua foto:</p>
-            <img
-              src={imagemUsuario}
-              alt="Usuário"
-              width={220}
-              style={{ borderRadius: 10 }}
-            />
-          </div>
-        )}
-      </div>
+      {image && (
+        <div>
+          <h3>Sua foto:</h3>
+          <img src={image} alt="preview" width={250} />
+        </div>
+      )}
     </div>
   );
 }

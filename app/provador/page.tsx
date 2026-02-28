@@ -27,6 +27,17 @@ const produtoSelecionado = searchParams.get("produto");
       fontFamily: "sans-serif"
     }}>
       <h1 style={{ fontSize: 32 }}>Provador Virtual Fitto</h1>
+      {produtoSelecionado && (
+  <div style={{
+    marginBottom: 15,
+    padding: 10,
+    borderRadius: 8,
+    background: "#ecfeff",
+    border: "1px solid #67e8f9"
+  }}>
+    Produto selecionado: {produtoSelecionado}
+  </div>
+)}
 
       <label style={{
         padding: "12px 20px",

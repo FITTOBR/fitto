@@ -1,148 +1,106 @@
 "use client";
 
-import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-function ConteudoProvador() {
-  const [imagem, setImagem] = useState<string | null>(null);
-  const [estado, setEstado] = useState("");
-const [cidade, setCidade] = useState("");
-const [liberado, setLiberado] = useState(false);
-  const regioesLiberadas: Record<string, string[]> = {
-  "SP": ["São Paulo", "Campinas"],
-  "RJ": ["Rio de Janeiro"],
-  "MG": ["Belo Horizonte"]
-};
+export default function ProvadorPage() {
   const searchParams = useSearchParams();
   const produtoSelecionado = searchParams.get("produto");
+
+  const [imagemUsuario, setImagemUsuario] = useState<string | null>(null);
 
   function handleUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const url = URL.createObjectURL(file);
-    setImagem(url);
+    const imageUrl = URL.createObjectURL(file);
+    setImagemUsuario(imageUrl);
   }
 
   return (
-    <main
+    <div
       style={{
         minHeight: "100vh",
         display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         justifyContent: "center",
-        gap: 20,
-        fontFamily: "sans-serif"
+        alignItems: "center",
+        background: "#f8fafc"
       }}
     >
-      <h1 style={{ fontSize: 32 }}>Provador Virtual Fitto</h1>
-      <img
-  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
-  style={{
-    width: 180,
-    borderRadius: 12,
-    marginBottom: 10
-  }}
-/>
-
-   {produtoSelecionado && (
-  <div style={{
-    marginBottom: 15,
-    padding: 15,
-    borderRadius: 12,
-    background: "#ecfeff",
-    border: "1px solid #67e8f9",
-    textAlign: "center"
-  }}>
-    <p style={{ marginBottom: 10, fontWeight: "bold" }}>
-      Produto selecionado:
-    </p>
-
-    <p style={{ marginBottom: 10 }}>
-      {produtoSelecionado}
-    </p>
-
-    <img
-      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
-      alt="Produto"
-      width={220}
-      style={{ borderRadius: 10 }}
-    />
-  </div>
-)}
-    <img
-      https://images.unsplash.com/photo-1521572163474-6864f9cf17ab
-      style={{
-        width: 120,
-        height: 120,
-        objectFit: "cover",
-        borderRadius: 10
-      }}
-    />
-
-    <div>
-      <h3 style={{ margin: 0 }}>
-        {produtoSelecionado === "camiseta-fitto-dry"
-          ? "Camiseta Fitto Dry"
-          : "Produto Fitto"}
-      </h3>
-
-      <p style={{ color: "#64748b", marginTop: 5 }}>
-        Ajuste inteligente ao corpo
-      </p>
-
-      <div style={{
-        marginTop: 10,
-        padding: "6px 12px",
-        borderRadius: 8,
-        background: "#ecfeff",
-        border: "1px solid #67e8f9",
-        fontSize: 14
-      }}>
-        Tamanho recomendado será exibido após análise
-      </div>
-    </div>
-  </div>
-)}
-        >
-          Produto selecionado: {produtoSelecionado}
-        </div>
-      )}
-
-      <label
+      <div
         style={{
-          padding: "12px 20px",
-          background: "black",
-          color: "white",
-          borderRadius: 8,
-          cursor: "pointer"
+          width: 420,
+          padding: 30,
+          borderRadius: 16,
+          background: "white",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+          textAlign: "center"
         }}
       >
-        Enviar Foto
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleUpload}
-          style={{ display: "none" }}
-        />
-      </label>
+        <h1 style={{ fontSize: 26, marginBottom: 20 }}>
+          Provador Virtual Fitto
+        </h1>
 
-      {imagem && (
-        <img
-          src={imagem}
-          alt="Preview"
-          style={{ width: 250, borderRadius: 12 }}
-        />
-      )}
-    </main>
-  );
-}
+        {produtoSelecionado && (
+          <div
+            style={{
+              marginBottom: 20,
+              padding: 15,
+              borderRadius: 12,
+              background: "#ecfeff",
+              border: "1px solid #67e8f9"
+            }}
+          >
+            <p style={{ fontWeight: "bold", marginBottom: 10 }}>
+              Produto selecionado
+            </p>
 
-export default function Provador() {
-  return (
-    <Suspense fallback={<div>Carregando provador...</div>}>
-      <ConteudoProvador />
-    </Suspense>
+            <p style={{ marginBottom: 15 }}>
+              {produtoSelecionado}
+            </p>
+
+            <img
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+              alt="Produto"
+              width={220}
+              style={{ borderRadius: 10 }}
+            />
+          </div>
+        )}
+
+        {!imagemUsuario && (
+          <label
+            style={{
+              display: "inline-block",
+              padding: "12px 20px",
+              background: "black",
+              color: "white",
+              borderRadius: 10,
+              cursor: "pointer"
+            }}
+          >
+            Enviar Foto
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              hidden
+            />
+          </label>
+        )}
+
+        {imagemUsuario && (
+          <div style={{ marginTop: 20 }}>
+            <p style={{ marginBottom: 10 }}>Sua foto:</p>
+            <img
+              src={imagemUsuario}
+              alt="Usuário"
+              width={220}
+              style={{ borderRadius: 10 }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

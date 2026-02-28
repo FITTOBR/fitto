@@ -37,6 +37,30 @@ export default function MarketplacePage() {
 
       <h2>2️⃣ Escolha uma peça</h2>
       <p>Selecione roupa para teste</p>
+      <div style={{
+  marginTop: 15,
+  padding: 20,
+  borderRadius: 12,
+  background: "#fff",
+  border: "1px solid #e5e7eb"
+}}>
+  <h3>Camiseta Fitto Dry</h3>
+  <p>Tecido tecnológico com ajuste inteligente</p>
+
+  <button
+    style={{
+      marginTop: 10,
+      padding: "8px 16px",
+      borderRadius: 8,
+      border: "none",
+      background: "#000",
+      color: "#fff",
+      cursor: "pointer"
+    }}
+  >
+    Testar no provador
+  </button>
+</div>
 
       <h2>3️⃣ Visualização no corpo</h2>
 

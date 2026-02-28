@@ -47,6 +47,7 @@ export default function MarketplacePage() {
   <h3>Camiseta Fitto Dry</h3>
   <p>Tecido tecnológico com ajuste inteligente</p>
 
+  <a href="/provador?produto=camiseta-fitto-dry">
   <button
     style={{
       marginTop: 10,
@@ -60,6 +61,7 @@ export default function MarketplacePage() {
   >
     Testar no provador
   </button>
+</a>
 </div>
 
       <h2>3️⃣ Visualização no corpo</h2>

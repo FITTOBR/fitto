@@ -48,7 +48,7 @@ const [liberado, setLiberado] = useState(false);
     background: "#fff"
   }}>
     <img
-      src="/produto-exemplo.png"
+      https://images.unsplash.com/photo-1521572163474-6864f9cf17ab
       style={{
         width: 120,
         height: 120,

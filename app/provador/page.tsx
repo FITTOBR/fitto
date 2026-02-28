@@ -8,6 +8,11 @@ function ConteudoProvador() {
   const [estado, setEstado] = useState("");
 const [cidade, setCidade] = useState("");
 const [liberado, setLiberado] = useState(false);
+  const regioesLiberadas: Record<string, string[]> = {
+  "SP": ["São Paulo", "Campinas"],
+  "RJ": ["Rio de Janeiro"],
+  "MG": ["Belo Horizonte"]
+};
   const searchParams = useSearchParams();
   const produtoSelecionado = searchParams.get("produto");
 
